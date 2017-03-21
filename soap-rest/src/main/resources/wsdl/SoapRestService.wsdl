@@ -1,0 +1,72 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:typ="http://com.study.ru/soap/types" xmlns:tns="http://com.study.ru/soap" targetNamespace="http://com.study.ru/soap">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://com.study.ru/soap/types" schemaLocation="SoapRestTypes.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getUserRequest">
+        <wsdl:part type="typ:LongTypeRequest" name="getUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="deleteUserRequest">
+        <wsdl:part type="typ:LongTypeRequest" name="deleteUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getUserResponse">
+        <wsdl:part type="typ:GetUserResponse" name="getUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="createUserRequest">
+        <wsdl:part type="typ:CreateUserRequest" name="createUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="updateUserRequest">
+        <wsdl:part type="typ:UpdateUserRequest" name="updateUserRequest"/>
+    </wsdl:message>
+    <wsdl:portType name="SoapRest">
+        <wsdl:operation name="getUser">
+            <wsdl:input message="tns:getUserRequest" name="getUserRequest"/>
+            <wsdl:output message="tns:getUserResponse" name="getUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteUser">
+            <wsdl:input message="tns:deleteUserRequest" name="deleteUserRequest"/>
+        </wsdl:operation>
+        <wsdl:operation name="createUser">
+            <wsdl:input message="tns:createUserRequest" name="createUserRequest"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateUser">
+            <wsdl:input message="tns:updateUserRequest" name="updateUserRequest"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SoapRest" type="tns:SoapRest">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="getUser">
+            <soap:operation soapAction="getUser" />
+            <wsdl:input name="getUserRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output name="getUserResponse">
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteUser">
+            <soap:operation soapAction="deleteUser" />
+            <wsdl:input name="deleteUserRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="createUser">
+            <soap:operation soapAction="createUser" />
+            <wsdl:input name="createUserRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateUser">
+            <soap:operation soapAction="updateUser" />
+            <wsdl:input name="updateUserRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SoapRestService">
+        <wsdl:port binding="tns:SoapRest" name="SoapRest">
+            <soap:address location="http://localhost:8080/ws/SoapRestService" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

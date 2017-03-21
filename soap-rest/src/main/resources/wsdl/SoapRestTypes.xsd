@@ -1,0 +1,87 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://com.study.ru/soap"
+           targetNamespace="http://com.study.ru/soap/types" elementFormDefault="qualified" xmlns:typ="http://com.study.ru/soap/types">
+    <xs:complexType name="User">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Идентификатор пользователя</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="login" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Логин</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="password" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Пароль</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="firstName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Имя</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="lastName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Фамилия</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="email" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Элленктронный почтовый адрес</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="birthDate" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Дата рождения в милисекундах</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LongTypeRequest">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Идентификатор пользователя</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CreateUserRequest">
+        <xs:sequence>
+            <xs:element name="user" type="typ:User">
+                <xs:annotation>
+                    <xs:documentation>Пользователь</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UpdateUserRequest">
+        <xs:sequence>
+            <xs:element name="user" type="typ:User">
+                <xs:annotation>
+                    <xs:documentation>Пользователь</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetUserResponse">
+        <xs:sequence>
+            <xs:element name="user" type="typ:User">
+                <xs:annotation>
+                    <xs:documentation>Пользователь</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateUserRequest" type="typ:CreateUserRequest"/>
+    <xs:element name="UpdateUserRequest" type="typ:UpdateUserRequest"/>
+    <xs:element name="GetUserResponse" type="typ:GetUserResponse"/>
+    <xs:element name="LongTypeRequest" type="typ:LongTypeRequest"/>
+</xs:schema>
