@@ -7,6 +7,7 @@ import com.study.repository.model.User;
 import com.study.rest.converter.UserDTOToUserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -22,11 +23,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void createUser(User user) {
         if (user.getId() != null) {
             throw new UserException("Идентификатор пользователя должен быть пустым!");
         }
         userRepositoryImpl.save(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepositoryImpl.delete(id);
+    }
+
+    @Override
+    @Transactional
+    public void updateUser(User user) {
+        User persistedUser = findUser(user.getId());
+        persistedUser.setLastName(user.getLastName());
+        persistedUser.setFirstName(user.getFirstName());
+        persistedUser.setEmail(user.getEmail());
+        persistedUser.setBirthDate(user.getBirthDate());
     }
 
     @Override

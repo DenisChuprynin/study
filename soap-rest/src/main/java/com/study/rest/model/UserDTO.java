@@ -7,17 +7,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * Created by denis on 19.03.2017.
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@AllArgsConstructor(suppressConstructorProperties = true)
+@NoArgsConstructor
 public class UserDTO {
 
     @ApiParam(value = "Идентификатор пользователя")
@@ -42,4 +39,6 @@ public class UserDTO {
 
     @ApiParam(value = "Дата рождения в милисекундах")
     private Long birthDate;
+
+
 }

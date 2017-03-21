@@ -7,5 +7,9 @@ public interface UserService {
 
     User findUser(Long id);
 
-    void createUser(User userDTO);
+    void createUser(User user);
+
+    void deleteUser(Long id);
+
+    void updateUser(User user);
 }

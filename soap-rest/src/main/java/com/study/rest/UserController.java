@@ -38,15 +38,38 @@ public class UserController {
         );
     }
 
+    @ApiOperation(value = "Удаление пользователя")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Пользователь удален"),
+            @ApiResponse(code = 404, message = "Пользователь не найден")
+    })
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserDTO> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
     @ApiOperation(value = "Получение данных пользователя")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Пользователь создан"),
             @ApiResponse(code = 400, message = "Не коректные данные"),
             @ApiResponse(code = 500, message = "Внутренняя ошибка сервера")
     })
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createUser(@RequestBody @Valid UserDTO userDTO) {
         userService.createUser(userDTOToUserConverter.convert(userDTO));
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Обновление данных пользователя")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Пользователь обновлен"),
+            @ApiResponse(code = 400, message = "Не коректные данные"),
+            @ApiResponse(code = 500, message = "Внутренняя ошибка сервера")
+    })
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateUser(@RequestBody @Valid UserDTO userDTO) {
+        userService.updateUser(userDTOToUserConverter.convert(userDTO));
         return new ResponseEntity(HttpStatus.OK);
     }
 

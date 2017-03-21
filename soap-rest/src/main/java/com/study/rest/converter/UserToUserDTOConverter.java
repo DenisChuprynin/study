@@ -16,6 +16,7 @@ public class UserToUserDTOConverter implements Converter<User, UserDTO> {
                 .email(source.getEmail())
                 .firstName(source.getFirstName())
                 .lastName(source.getLastName())
+                .birthDate(source.getBirthDate())
                 .build();
     }
 
